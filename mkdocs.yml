@@ -1,0 +1,92 @@
+site_name: Tigin
+site_url: https://docs.tigin.xyz/
+site_author: Tigin Team
+
+repo_name: TiginProject/Tigin
+repo_url: https://github.com/TiginProject/Tigin
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2025 Tigin Project
+
+version:
+  provider: mike
+  default: stable
+  alias: true
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enabled: !ENV [ CI, false ]
+      enable_creation_date: true
+
+  - git-committers:
+      enabled: !ENV [ CI, false ]
+      repository: TiginProject/Tigin
+      branch: main
+  - macros
+
+theme:
+  name: 'material'
+  custom_dir: docs/overrides
+  logo: .github/readme/tigin.png
+  favicon: .github/readme/tigin.png
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Start your server: getting-started/start-your-server.md
+      - Project structure: getting-started/project-structure.md
+      - Contributing: getting-started/contributing.md
+  - Tutorials:
+      - Create your first plugin: tutorials/create-your-first-plugin.md
+      - Install your plugin: tutorials/install-your-plugin.md
+      - Use color codes: tutorials/use-color-codes.md
+      - Register commands: tutorials/register-commands.md
+      - Register event listeners: tutorials/register-event-listeners.md
+      - Schedule tasks: tutorials/schedule-tasks.md
