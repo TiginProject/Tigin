@@ -35,7 +35,7 @@ use const PHP_EOL;
 class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 	protected bool $logDebug;
 
-	private string $format = TextFormat::AQUA . "[%s] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
+	private string $format = TextFormat::BLUE . "%s " . TextFormat::RESET . "[".TextFormat::MATERIAL_GOLD."%s".TextFormat::RESET."] [%s%s".TextFormat::RESET."]". TextFormat::WHITE." %s" . TextFormat::RESET;
 	private bool $useFormattingCodes = false;
 	private string $mainThreadName;
 	private string $timezone;
@@ -105,7 +105,7 @@ class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 	}
 
 	public function info($message){
-		$this->send($message, \LogLevel::INFO, "INFO", TextFormat::WHITE);
+		$this->send($message, \LogLevel::INFO, "INFO", TextFormat::BLUE);
 	}
 
 	public function debug($message, bool $force = false){
@@ -182,14 +182,14 @@ class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 
 		$thread = NativeThread::getCurrentThread();
 		if($thread === null){
-			$threadName = $this->mainThreadName . " thread";
+			$threadName = $this->mainThreadName;
 		}elseif($thread instanceof Thread || $thread instanceof Worker){
-			$threadName = $thread->getThreadName() . " thread";
+			$threadName = $thread->getThreadName();
 		}else{
-			$threadName = (new \ReflectionClass($thread))->getShortName() . " thread";
+			$threadName = (new \ReflectionClass($thread))->getShortName();
 		}
 
-		$message = sprintf($this->format, $time->format("H:i:s.v"), $color, $threadName, $prefix, TextFormat::addBase($color, TextFormat::clean($message, false)));
+		$message = sprintf($this->format, $time->format("H:i:s"), $threadName, $color, $prefix, TextFormat::clean($message, false));
 
 		if(!Terminal::isInit()){
 			Terminal::init($this->useFormattingCodes); //lazy-init colour codes because we don't know if they've been registered on this thread
