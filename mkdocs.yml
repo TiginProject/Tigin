@@ -31,8 +31,8 @@ plugins:
 theme:
   name: 'material'
   custom_dir: docs/overrides
-  logo: .github/readme/tigin.png
-  favicon: .github/readme/tigin.png
+  logo: https://github.com/TiginProject/Tigin/blob/master/.github/readme/tigin.png?raw=true
+  favicon: https://github.com/TiginProject/Tigin/blob/master/.github/readme/tigin.png?raw=true
   features:
     - announce.dismiss
     - content.action.edit
@@ -80,13 +80,4 @@ nav:
   - Home: index.md
   - Getting Started:
       - Installation: getting-started/installation.md
-      - Start your server: getting-started/start-your-server.md
-      - Project structure: getting-started/project-structure.md
       - Contributing: getting-started/contributing.md
-  - Tutorials:
-      - Create your first plugin: tutorials/create-your-first-plugin.md
-      - Install your plugin: tutorials/install-your-plugin.md
-      - Use color codes: tutorials/use-color-codes.md
-      - Register commands: tutorials/register-commands.md
-      - Register event listeners: tutorials/register-event-listeners.md
-      - Schedule tasks: tutorials/schedule-tasks.md

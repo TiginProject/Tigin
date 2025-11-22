@@ -29,5 +29,5 @@ If that's not an option for you, you may be able to add some of Tigin's missing 
   
     Follow the comprehensive guide to install and configure your Tigin server.
   
-    [**:octicons-arrow-right-24: Getting Started**](getting-started/installation.md)
+    [**Getting Started**](getting-started/installation.md)
 </div>

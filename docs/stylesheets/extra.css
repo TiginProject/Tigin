@@ -179,10 +179,10 @@ li.md-tabs__item.md-tabs__item--active {
     --md-typeset-a-color: var(--md-sys-color-primary);
 
     --md-footer-fg-color: var(--md-sys-color-surface-variant);
-    --md-footer-fg-color--light: var(--md-sys-color-inverse-on-surface);
-    --md-footer-fg-color--lighter: var(--md-sys-color-surface-container-highest);
-    --md-footer-bg-color: var(--md-sys-color-on-surface-variant);
-    --md-footer-bg-color--dark: var(--md-sys-color-inverse-surface);
+    --md-footer-fg-color--light: var(--md-sys-color-on-surface-variant);
+    --md-footer-fg-color--lighter: var(--md-sys-color-inverse-surface);
+    --md-footer-bg-color: var(--md-sys-color-inverse-on-surface);
+    --md-footer-bg-color--dark: var(--md-sys-color-surface-container-highest);
 }
 
 [data-md-color-scheme="slate"] {
