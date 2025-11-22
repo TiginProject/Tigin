@@ -31,8 +31,8 @@ plugins:
 theme:
   name: 'material'
   custom_dir: docs/overrides
-  logo: https://github.com/TiginProject/Tigin/blob/master/.github/readme/tigin.png?raw=true
-  favicon: https://github.com/TiginProject/Tigin/blob/master/.github/readme/tigin.png?raw=true
+  logo: https://pbs.twimg.com/media/FD6v3jRXwAgfRtt.jpg
+  favicon: https://pbs.twimg.com/media/FD6v3jRXwAgfRtt.jpg
   features:
     - announce.dismiss
     - content.action.edit
