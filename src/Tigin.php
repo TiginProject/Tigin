@@ -186,9 +186,6 @@ namespace pocketmine {
 		if(((int) ini_get('zend.assertions')) !== -1){
 			$logger->warning("Debugging assertions are enabled. This may degrade performance. To disable them, set `zend.assertions = -1` in php.ini.");
 		}
-		if(\Phar::running(true) === ""){
-			$logger->warning("Non-packaged installation detected. This will degrade autoloading speed and make startup times longer.");
-		}
 		if(function_exists('opcache_get_status') && ($opcacheStatus = opcache_get_status(false)) !== false){
 			$jitEnabled = $opcacheStatus["jit"]["on"] ?? false;
 			if($jitEnabled !== false){
@@ -268,7 +265,7 @@ JIT_WARNING
 		}
 		require_once($bootstrap);
 
-		$composerGitHash = InstalledVersions::getReference('pocketmine/pocketmine-mp');
+		$composerGitHash = InstalledVersions::getReference('tigin/tigin');
 		if($composerGitHash !== null){
 			//we can't verify dependency versions if we were installed without using git
 			$currentGitHash = explode("-", VersionInfo::GIT_HASH(), 2)[0];
@@ -339,7 +336,7 @@ JIT_WARNING
 		}
 		$logFile = isset($opts[BootstrapOptions::NO_LOG_FILE]) ? null : Path::join($dataPath, "server.log");
 
-		$logger = new MainLogger($logFile, Terminal::hasFormattingCodes(), "Server", new \DateTimeZone(Timezone::get()), false, Path::join($dataPath, "log_archive"));
+		$logger = new MainLogger($logFile, Terminal::hasFormattingCodes(), "MAIN", new \DateTimeZone(Timezone::get()), false, Path::join($dataPath, "log_archive"));
 		if($logFile === null){
 			$logger->notice("Logging to file disabled. Ensure logs are collected by other means (e.g. Docker logs).");
 		}
