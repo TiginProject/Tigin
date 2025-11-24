@@ -1011,19 +1011,10 @@ class Server{
 
 			$this->resourceManager = new ResourcePackManager(Path::join($this->dataPath, "resource_packs"), $this->logger);
 
-			$pluginGraylist = null;
-			$graylistFile = Path::join($this->dataPath, "plugin_list.yml");
-			if(!file_exists($graylistFile)){
-				copy(Path::join(\pocketmine\RESOURCE_PATH, 'plugin_list.yml'), $graylistFile);
-			}
-			try{
-				$array = yaml_parse(Filesystem::fileGetContents($graylistFile));
-				if(!is_array($array)){
-					throw new \InvalidArgumentException("Expected array for root, but have " . gettype($array));
-				}
-				$pluginGraylist = PluginGraylist::fromArray($array);
+			try {
+			$pluginGraylist = PluginGraylist::fromArray($this->configGroup->getProperty(Yml::PLUGINS));
 			}catch(\InvalidArgumentException $e){
-				$this->logger->emergency("Failed to load $graylistFile: " . $e->getMessage());
+				$this->logger->emergency("Failed to load graylist: " . $e->getMessage());
 				$this->forceShutdownExit();
 				return;
 			}
