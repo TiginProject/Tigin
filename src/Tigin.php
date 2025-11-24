@@ -303,6 +303,11 @@ JIT_WARNING
 		//this has to be done after we're sure the data path exists
 		$dataPath = realpath($dataPath) . DIRECTORY_SEPARATOR;
 
+		$logsPath = Path::join($dataPath . "logs");
+		if(!is_dir($logsPath)){
+			mkdir($logsPath, 0777, true);
+		}
+
 		$lockFilePath = Path::join($dataPath . "logs", 'server.lock');
 		try{
 			$pid = Filesystem::createLockFile($lockFilePath);

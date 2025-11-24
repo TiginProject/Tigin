@@ -799,6 +799,7 @@ class Server{
 				$dataPath,
 				$pluginPath,
 				Path::join($dataPath, "worlds"),
+				Path::join($dataPath, "logs"),
 				Path::join($dataPath, "players")
 			] as $neededPath){
 				if(!file_exists($neededPath)){

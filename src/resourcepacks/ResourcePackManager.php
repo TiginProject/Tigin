@@ -23,9 +23,12 @@ declare(strict_types=1);
 
 namespace pocketmine\resourcepacks;
 
+use pocketmine\Server;
 use pocketmine\utils\Config;
 use pocketmine\utils\Filesystem;
+use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
+use pocketmine\YmlServerProperties;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Filesystem\Path;
 use function array_keys;
@@ -79,21 +82,11 @@ class ResourcePackManager{
 			throw new \InvalidArgumentException("Resource packs path $path exists and is not a directory");
 		}
 
-		$resourcePacksYml = Path::join($this->path, "resource_packs.yml");
-		if(!file_exists($resourcePacksYml)){
-			copy(Path::join(\pocketmine\RESOURCE_PATH, "resource_packs.yml"), $resourcePacksYml);
-		}
-
-		$resourcePacksConfig = new Config($resourcePacksYml, Config::YAML, []);
-
-		$this->serverForceResources = (bool) $resourcePacksConfig->get("force_resources", false);
+		$this->serverForceResources = (bool) Server::getInstance()->getConfigGroup()->getPropertyBool(YmlServerProperties::SETTINGS_FORCE_RESOURCES, false);
 
 		$logger->info("Loading resource packs...");
 
-		$resourceStack = $resourcePacksConfig->get("resource_stack", []);
-		if(!is_array($resourceStack)){
-			throw new \InvalidArgumentException("\"resource_stack\" key should contain a list of pack names");
-		}
+		$resourceStack = array_diff(scandir($this->path), array('..', '.'));
 
 		foreach(Utils::promoteKeys($resourceStack) as $pos => $pack){
 			if(!is_string($pack) && !is_int($pack) && !is_float($pack)){
@@ -126,6 +119,7 @@ class ResourcePackManager{
 					}
 					$this->encryptionKeys[$index] = $key;
 				}
+				$logger->info("Enabling pack " . TextFormat::AQUA . $newPack->getPackName());
 			}catch(ResourcePackException $e){
 				$logger->critical("Could not load resource pack \"$pack\": " . $e->getMessage());
 			}
