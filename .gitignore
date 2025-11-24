@@ -11,7 +11,7 @@ logs/*
 *.txt
 *.phar
 server.properties
-/pocketmine.yml
+/tigin.yml
 memory_dumps/*
 resource_packs/
 /phpstan.neon
