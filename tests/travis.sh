@@ -37,7 +37,7 @@ fi
 cp -r tests/plugins/TesterPlugin "$PLUGINS_DIR"
 echo -e "stop\n" | php PocketMine-MP.phar --no-wizard --disable-ansi --disable-readline --debug.level=2 --data="$DATA_DIR" --plugins="$PLUGINS_DIR" --anonymous-statistics.enabled=0 --settings.async-workers="$PM_WORKERS" --settings.enable-dev-builds=1
 
-output=$(grep '\[TesterPlugin\]' "$DATA_DIR/server.log")
+output=$(grep '\[TesterPlugin\]' "$DATA_DIR/logs/server.log")
 if [ "$output" == "" ]; then
 	echo TesterPlugin failed to run tests, check the logs
 	exit 1
@@ -48,7 +48,7 @@ if [ "$result" != "" ]; then
 	echo "$result"
 	echo Some tests did not complete successfully, changing build status to failed
 	exit 1
-elif [ "$(grep -c "ERROR\|CRITICAL\|EMERGENCY" "$DATA_DIR/server.log")" -ne 0 ]; then
+elif [ "$(grep -c "ERROR\|CRITICAL\|EMERGENCY" "$DATA_DIR/logs/server.log")" -ne 0 ]; then
 	echo Server log contains error messages, changing build status to failed
 	exit 1
 else

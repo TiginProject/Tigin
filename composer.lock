@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "700a9c39566cd320d92e758abb739d0a",
+    "content-hash": "ac1de4b62e638db05340ee339d775e21",
     "packages": [
         {
             "name": "adhocore/json-comment",
@@ -256,7 +256,7 @@
         },
         {
             "name": "pocketmine/bedrock-protocol",
-            "version": "53.2.0+bedrock-1.21.140",
+            "version": "53.2.0+bedrock-1.21.124",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pmmp/BedrockProtocol.git",
@@ -2807,5 +2807,5 @@
     "platform-overrides": {
         "php": "8.1.0"
     },
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

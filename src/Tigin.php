@@ -303,7 +303,7 @@ JIT_WARNING
 		//this has to be done after we're sure the data path exists
 		$dataPath = realpath($dataPath) . DIRECTORY_SEPARATOR;
 
-		$lockFilePath = Path::join($dataPath, 'server.lock');
+		$lockFilePath = Path::join($dataPath . "logs", 'server.lock');
 		try{
 			$pid = Filesystem::createLockFile($lockFilePath);
 		}catch(\InvalidArgumentException $e){
@@ -334,9 +334,9 @@ JIT_WARNING
 		}else{
 			Terminal::init();
 		}
-		$logFile = isset($opts[BootstrapOptions::NO_LOG_FILE]) ? null : Path::join($dataPath, "server.log");
+		$logFile = isset($opts[BootstrapOptions::NO_LOG_FILE]) ? null : Path::join($dataPath . "logs", "server.log");
 
-		$logger = new MainLogger($logFile, Terminal::hasFormattingCodes(), "MAIN", new \DateTimeZone(Timezone::get()), false, Path::join($dataPath, "log_archive"));
+		$logger = new MainLogger($logFile, Terminal::hasFormattingCodes(), "MAIN", new \DateTimeZone(Timezone::get()), false, Path::join($dataPath, "logs"));
 		if($logFile === null){
 			$logger->notice("Logging to file disabled. Ensure logs are collected by other means (e.g. Docker logs).");
 		}

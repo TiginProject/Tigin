@@ -7,14 +7,13 @@ plugins/*
 bin*/*
 timings/*
 crashdumps/*
-*.log
+logs/*
 *.txt
 *.phar
 server.properties
 /pocketmine.yml
 memory_dumps/*
 resource_packs/
-server.lock
 /phpstan.neon
 
 # Common IDEs
